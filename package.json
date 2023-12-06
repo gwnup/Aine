@@ -40,10 +40,11 @@
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
-        "@adiwajshing/baileys": "npm:@whiskeysockets/baileys@6.2.1",
+        "@adiwajshing/baileys": "npm:@whiskeysockets/baileys@latest",
         "@adiwajshing/keyed-db": "^0.2.4",
         "@bochilteam/scraper": "^2.0.0",
         "acrcloud": "^1.4.0",
+        "aki-api": "^6.0.9",
          "api-dylux": "^1.2.8",
         "anonfile-lib": "^1.0.1",
         "async": "^3.2.3",

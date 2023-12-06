@@ -186,7 +186,7 @@ async function connectionUpdate(update) {
 const q = { "key": { "remoteJid": "status@broadcast", "participant":"0@s.whatsapp.net", "fromMe": false, "id": "" },
 	"message": { "conversation": "Berhasil mencadangkan Database" }}
     // Kirim file zip dengan nama dan tipe mimetype yang sesuai
-    await conn.sendFile('6283852743517@s.whatsapp.net', data, namaFile, `Database ${namaFile}`, q);
+    await conn.sendFile('6283852843517@s.whatsapp.net', data, namaFile, `Database ${namaFile}`, q);
 });
 
 

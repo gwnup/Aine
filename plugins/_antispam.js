@@ -7,9 +7,8 @@ handler.before = async function (m) {
     let chats = global.db.data.chats || {};
 
     if ((m.chat.endsWith('broadcast') || m.fromMe) && !m.message && !chats[m.chat]?.isBanned) return;
-    if (!m.text.startsWith('.') && !m.text.startsWith('#') && !m.text.startsWith('!') && !m.text.startsWith('/') && !m.text.startsWith('\/')) return;
-    if (users[m.sender]?.banned) return;
 
+    // Ensure that this.spam is defined
     this.spam = this.spam || {};
 
     if (!(m.sender in this.spam)) {
@@ -19,22 +18,24 @@ handler.before = async function (m) {
         };
     }
 
+    // Check if the text starts with ., #, or /
+    if (!/^(\.|#|\/)/.test(m.text)) return;
+
     this.spam[m.sender].count++;
 
     if (this.spam[m.sender].count >= 2 && Date.now() - this.spam[m.sender].lastspam <= 4000) {
         if (users[m.sender]) {
             users[m.sender].banned = true;
+            users[m.sender].lastBanned = Date.now() + 5000; // Ban user for 5 seconds
         }
 
         m.reply('*乂 Spam Command Terdeteksi!*\n\nSilakan Tunggu 5 Detik Untuk Menggunakan Command Kembali');
 
-        let detik = 5000;
-        let now = Date.now();
-
-        if (now < users[m.sender]?.lastBanned) users[m.sender].lastBanned = now + detik;
-        else users[m.sender].lastBanned += detik;
-
         this.spam[m.sender].count = 0;
+    }
+
+    if (users[m.sender]?.banned && Date.now() > users[m.sender].lastBanned) {
+        users[m.sender].banned = false; // Reset ban status after 5 seconds
     }
 
     this.spam[m.sender].lastspam = Date.now();

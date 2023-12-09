@@ -370,4 +370,3 @@ console.log(color(time,"white"),color("Connecting...","aqua"))
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)]
 }
-require("http").createServer((_, res) => res.end("Uptime!")).listen(8080)

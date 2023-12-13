@@ -314,8 +314,6 @@ module.exports = {
                     regTime: -1,
                     afk: -1,
                     afkReason: '',
-                    antispam: 0,
-                    antispamlastclaim: 0,
                     pasangan: '',
                     banned: false,
                     premium: false,
@@ -567,8 +565,6 @@ module.exports = {
                     if (!('useDocument' in chat)) chat.useDocument = false
                     if (!('antiToxic' in chat)) chat.antiToxic = false
                     if (!isNumber(chat.expired)) chat.expired = 0
-                if (!isNumber(user.antispam)) user.antispam = 0
-                if (!isNumber(user.antispamlastclaim)) user.antispamlastclaim = 0
                 } else db.data.chats[m.chat] = {
                     isBanned: false,
                     welcome: false,

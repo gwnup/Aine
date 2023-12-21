@@ -39,7 +39,7 @@ handler.command = /^(ttdl|tiktok|tiktokdl|tiktokdownload|tt|tiktokvid|ttvid)$/i
 module.exports = handler**/
 
 
-let fetch = require('node-fetch')
+/**let fetch = require('node-fetch')
 let handler = async (m, { conn, usedPrefix, args, command, text }) => {
 if (!text) throw `Linknya Mana?`
 m.reply(`wait`)
@@ -54,4 +54,28 @@ handler.help = ['tiktok'].map(v => v + ' <url>')
 handler.tags = ['downloader']
 handler.command = /^(ttdl|tiktok|tiktokdl|tiktokdownload|tt|tiktokvid|ttvid)$/i
 
-module.exports = handler
+module.exports = handler**/
+
+let fetch = require('node-fetch');
+let handler = async (m, { conn, usedPrefix, args, command, text }) => {
+  if (!text) throw `Linknya Mana?`;
+  m.reply(`Tunggu sebentar...`);
+  
+  let res = await fetch(`https://vihangayt.me/download/tiktok?url=${args[0]}`);
+  let json = await res.json();
+
+  if (json.status && json.data.status === "ok") {
+    let cap = `*Username:* ${json.data.author_name}\n*Description:* ${json.data.desc}\n`;
+
+    conn.sendMessage(m.chat, { video: { url: json.data.play_url }, caption: cap }, { quoted: m });
+    conn.sendMessage(m.chat, { audio: { url: json.data.links[4].a }, mimetype: 'audio/mp4' }, { quoted: m });
+  } else {
+    throw `Terjadi kesalahan saat mengambil data. Pastikan URL TikTok valid dan coba lagi.`;
+  }
+};
+
+handler.help = ['tiktok'].map(v => v + ' <url>');
+handler.tags = ['downloader'];
+handler.command = /^(ttdl|tiktok|tiktokdl|tiktokdownload|tt|tiktokvid|ttvid)$/i;
+
+module.exports = handler;

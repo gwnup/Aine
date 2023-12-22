@@ -1,4 +1,8 @@
-let handler = async m => m.reply(`*Pricelist Harga Panel⚡RIFQII STORE* :
+let handler = async m => {
+    const titik = '```';
+    m.reply(`*Pricelist Harga Panel⚡RIFQII STORE* :
+*_SUDAH TERSEDIA PM2_*
+${titik}Otomatis bot auto restart jika mati${titik}
 
 ⚡PAKET R1
 1GB RAM/1GB Disk/35% CPU
@@ -33,13 +37,14 @@ Rp15.000.00/1 BULAN
 - Bisa run 24 JAM
 - Website di close bot tetap jalan
 
-Minat? Chat: wa.me/6288215404492?text=buy+panel
-LINK GRUP: tinyurl.com/LinkGcBot
+Minat? Chat: wa.me/6283852843517?text=buy+panel
+LINK GRUP: https://bit.ly/LinkGcBot
 
-*_📍BERGARANSI FULL 30 HARI_*
-`.trim()) // Tambah sendiri kalo mau
-handler.help = ['panel']
-handler.tags = ['info']
-handler.command = /^panel$/i
+*_📍BERGARANSI FULL 30 HARI_*`.trim());
+};
 
-module.exports = handler
+handler.help = ['panel'];
+handler.tags = ['info'];
+handler.command = /^panel$/i;
+
+module.exports = handler;

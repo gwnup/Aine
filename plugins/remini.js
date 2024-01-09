@@ -28,7 +28,7 @@ async function handler(m, { conn, usedPrefix, command }) {
     if (/^image/.test(mime) && !/webp/.test(mime)) {
       const img = await q.download();
       const out = await uploadImage(img);
-      const apiUrl = `https://api.botcahx.live/api/tools/remini?url=${out}&apikey=${randomApiKey}`;
+      const apiUrl = `https://api.botcahx.eu.org/api/tools/remini?url=${out}&apikey=${randomApiKey}`;
       const api = await fetch(apiUrl);
       const image = await api.json();
       const url = image.url;
